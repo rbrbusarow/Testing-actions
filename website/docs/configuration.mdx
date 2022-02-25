@@ -1,0 +1,123 @@
+---
+id: configuration
+sidebar_label: Configuration
+title: Configuration
+
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+## Gradle
+
+
+
+<Tabs groupId="language"
+  defaultValue="Kotlin Plugin"
+  values={[
+    {label: 'Kotlin Plugin', value: 'Kotlin Plugin'},
+    {label: 'Groovy Plugin', value: 'Groovy Plugin'},
+    {label: 'Kotlin Dependencies', value: 'Kotlin Dependencies'},
+    {label: 'Groovy Dependencies', value: 'Groovy Dependencies'},
+]}>
+
+<TabItem value="Kotlin Plugin">
+
+```kotlin
+// settings.gradle.kts
+
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+  }
+}
+```
+
+```kotlin
+// top-level build.gradle.kts
+
+plugins {
+  id("TEMPLATE_DOMAIN.TEMPLATE_PROJECT_NAME") version "0.10.0"
+}
+```
+
+```kotlin
+// any Android module's build.gradle.kts
+
+plugins {
+  id("android-library") // or application, etc.
+  kotlin("android")
+  id("TEMPLATE_DOMAIN.TEMPLATE_PROJECT_NAME")
+}
+```
+
+</TabItem>
+
+<TabItem value="Groovy Plugin">
+
+```groovy
+// settings.gradle
+
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+  }
+}
+```
+
+```groovy
+// top-level build.gradle
+
+plugins {
+  id "TEMPLATE_DOMAIN.foo" version "0.10.0"
+}
+```
+
+```groovy
+// any Android module's build.gradle
+
+plugins {
+  id 'android-library' // or application, etc.
+  kotlin("android")
+  id 'TEMPLATE_DOMAIN.TEMPLATE_PROJECT_NAME'
+}
+```
+
+</TabItem>
+
+<TabItem value="Kotlin Dependencies">
+
+```kotlin
+// any Android module's build.gradle.kts
+
+plugins {
+  id("android-library") // or application, etc.
+  kotlin("android")
+  id("com.squareup.anvil")
+}
+
+dependencies {
+
+
+}
+```
+
+</TabItem>
+
+<TabItem value="Groovy Dependencies">
+
+```groovy
+// any Android module's build.gradle
+
+plugins {
+  id 'android-library' // or application, etc.
+  kotlin("android")
+  id 'com.squareup.anvil'
+}
+
+dependencies {
+}
+```
+</TabItem>
+
+</Tabs>
