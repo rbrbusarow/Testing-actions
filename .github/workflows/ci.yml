@@ -41,9 +41,12 @@ jobs:
   ktlint:
 
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
 
     steps:
+      - name: check out with token
+        uses: actions/checkout@v2
+        if: github.repository != 'RBusarow/Testing-actions'
+        
       - name: check out with PAT
         uses: actions/checkout@v2
         if: github.repository == 'RBusarow/Testing-actions'
@@ -51,10 +54,6 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           fetch-depth: 0
-
-      - name: check out with token
-        uses: actions/checkout@v2
-        if: github.repository != 'RBusarow/Testing-actions'
 
       - name: Set up JDK
         uses : actions/setup-java@v2
