@@ -45,7 +45,7 @@ dependencies {
   dependencySync("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
   dependencySync("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
   dependencySync("androidx.lifecycle:lifecycle-runtime:2.4.0")
-  dependencySync("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+  dependencySync("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
   dependencySync("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
   dependencySync("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.4.0")
   dependencySync("androidx.lifecycle:lifecycle-viewmodel:2.4.0")
