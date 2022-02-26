@@ -45,11 +45,11 @@ jobs:
     steps:
       - name: check out with token
         uses: actions/checkout@v2
-        if: github.repository != 'RBusarow/Testing-actions'
+        if: github.event.pull_request.head.repo.full_name != github.repository
         
       - name: check out with PAT
         uses: actions/checkout@v2
-        if: github.repository == 'RBusarow/Testing-actions'
+        if: github.event.pull_request.head.repo.full_name == github.repository
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
@@ -64,12 +64,12 @@ jobs:
 
       # formats all kotlin files
       - name: KtLint format
-        if: github.repository == 'RBusarow/Testing-actions'
+        if: github.event.pull_request.head.repo.full_name == github.repository
         run: ./gradlew ktlintformat -q --no-daemon
 
       # If KtLint generated changes, commit and push those changes.
       - name: commit changes
-        if: github.repository == 'RBusarow/Testing-actions'
+        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply KtLint format
