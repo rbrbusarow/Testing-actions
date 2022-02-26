@@ -76,7 +76,7 @@ jobs:
           commit_options: '--no-verify --signoff'
 
       - name: KtLint check
-        run: ./gradlew ktlint -q --no-daemon
+        run: ./gradlew ktlintCheck -q --no-daemon
 
   versioning:
 
@@ -84,7 +84,13 @@ jobs:
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
 
     steps:
-      - uses: actions/checkout@v2
+      - name: check out with token
+        uses: actions/checkout@v2
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        
+      - name: check out with PAT
+        uses: actions/checkout@v2
+        if: github.event.pull_request.head.repo.full_name == github.repository
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
